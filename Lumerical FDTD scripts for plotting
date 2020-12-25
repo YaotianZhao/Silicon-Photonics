@@ -1,0 +1,187 @@
+一个监视器的transmission转换为dB：
+
+monitor0="drop";
+
+T_temp =getresult(monitor0,"T");
+
+x=T_temp.lambda;
+
+x=1000000000*x;
+
+y=10*log10(T_temp.T);
+
+plot(x,y,"Wavelength(nm)", "Transmission(dB)","Simulated response","linewidth =5" );
+
+legend(monitor0);
+
+
+
+两个监视器的transmission转换为dB后比较：
+
+monitor0 = "out";
+
+monitor1 = "in";
+
+T_out=getresult(monitor0,"T");
+
+T_in =getresult(monitor1,"T");
+
+x=T_out.lambda;
+
+x=1000000000*x;
+
+y1=10*log10(T_out.T);
+
+y2=10*log10(T_in.T);
+
+plot(x,y1,y2,"Wavelength(nm)", "Transmission(dB)","Simulated response","linewidth =5" );
+
+legend(monitor0, monitor1);
+
+
+
+一个监视器的不同模式转换为dB后比较:
+
+向前传输的模式：
+
+#首先把mode expansion MONITOR命名为outmode
+
+T0=getresult("outmode","expansion for ");
+
+x=T0.lambda;
+
+x=1000000000*x;
+
+y0=real(10*log10(-T0.T_forward(:,1)));
+
+plot(x,y0,"Wavelength(nm)", "Transmission(dB)","Simulated response","linewidth =5" );
+
+#legend("upper waveguide","bottom waveguide");
+
+holdon;
+
+x=T0.lambda;
+
+x=1000000000*x;
+
+y1=real(10*log10(T0.T_forward(:,2)));
+
+plot(x,y1,"Wavelength(nm)", "Transmission(dB)","Simulated response","linewidth =3" );
+
+y2=real(10*log10(-T0.T_forward(:,3)));
+
+plot(x,y2,"Wavelength(nm)", "Transmission(dB)","Simulated response","linewidth =3" );
+
+y3=real(10*log10(-T0.T_forward(:,4)));
+
+plot(x,y3,"Wavelength(nm)", "Transmission(dB)","Simulated response","linewidth =3" );
+
+y4=real(10*log10(-T0.T_forward(:,5)));
+
+plot(x,y4,"Wavelength(nm)", "Transmission(dB)","Simulated response","linewidth =3" );
+
+y5=real(10*log10(-T0.T_forward(:,6)));
+
+plot(x,y5,"Wavelength(nm)", "Transmission(dB)","Simulated response","linewidth =3" );
+
+y6=real(10*log10(-T0.T_forward(:,7)));
+
+plot(x,y6,"Wavelength(nm)", "Transmission(dB)","Simulated response","linewidth =3" );
+
+y7=real(10*log10(-T0.T_forward(:,8)));
+
+plot(x,y7,"Wavelength(nm)", "Transmission(dB)","Simulated response","linewidth =3" );
+
+y8=real(10*log10(-T0.T_forward(:,9)));
+
+plot(x,y8,"Wavelength(nm)", "Transmission(dB)","Simulated response","linewidth =3" );
+
+y9=real(10*log10(-T0.T_forward(:,10)));
+
+plot(x,y9,"Wavelength(nm)", "Transmission(dB)","Simulated response","linewidth =3");
+
+legend("TE0","TE1","TE2","TE3","TE4","TE5","TE6","TE7","TE8","TE9");
+
+holdoff;
+
+向后传输的模式：
+
+#首先把mode expansion MONITOR命名为in_mode
+
+T0=getresult("in_mode","expansion for ");
+
+x=T0.lambda;
+
+x=1000000000*x;
+
+y0=real(10*log10(-T0.T_backward(:,1)));
+
+plot(x,y0,"Wavelength(nm)", "Transmission(dB)","Simulated response","linewidth =5" );
+
+#legend("upper waveguide","bottom waveguide");
+
+holdon;
+
+x=T0.lambda;
+
+x=1000000000*x;
+
+y1=real(10*log10(-T0.T_backward(:,2)));
+
+plot(x,y1,"Wavelength(nm)", "Transmission(dB)","Simulated response","linewidth =3" );
+
+y2=real(10*log10(-T0.T_backward(:,3)));
+
+plot(x,y2,"Wavelength(nm)", "Transmission(dB)","Simulated response","linewidth =3" );
+
+y3=real(10*log10(-T0.T_backward(:,4)));
+
+plot(x,y3,"Wavelength(nm)", "Transmission(dB)","Simulated response","linewidth =3" );
+
+y4=real(10*log10(-T0.T_backward(:,5)));
+
+plot(x,y4,"Wavelength(nm)", "Transmission(dB)","Simulated response","linewidth =3" );
+
+y5=real(10*log10(-T0.T_backward(:,6)));
+
+plot(x,y5,"Wavelength(nm)", "Transmission(dB)","Simulated response","linewidth =3" );
+
+y6=real(10*log10(-T0.T_backward(:,7)));
+
+plot(x,y6,"Wavelength(nm)", "Transmission(dB)","Simulated response","linewidth =3" );
+
+y7=real(10*log10(-T0.T_backward(:,8)));
+
+plot(x,y7,"Wavelength(nm)", "Transmission(dB)","Simulated response","linewidth =3" );
+
+y8=real(10*log10(-T0.T_backward(:,9)));
+
+plot(x,y8,"Wavelength(nm)", "Transmission(dB)","Simulated response","linewidth =3" );
+
+y9=real(10*log10(-T0.T_backward(:,10)));
+
+plot(x,y9,"Wavelength(nm)", "Transmission(dB)","Simulated response","linewidth =3" );
+
+legend("TE0","TE1","TE2","TE3","TE4","TE5","TE6","TE7","TE8","TE9");
+
+holdoff;
+
+
+
+批量仿真
+
+clearjobs;
+
+addjob("A");
+
+addjob("B");
+
+addjob("C");
+
+addjob("D");
+
+addjob("E");
+
+addjob("F");
+
+runjobs;
