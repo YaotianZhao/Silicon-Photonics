@@ -168,7 +168,7 @@ holdoff;
 
 
 
-批量仿真
+#批量仿真
 
 clearjobs;
 
