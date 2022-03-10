@@ -1,0 +1,14 @@
+
+# disable CW norm
+nonorm;
+# get poynting vector from monitor.  
+Poynting = getresult("monitor","P");
+# integrate real Pz to get power.  Assume this monitor is 2D, in the XY plane
+# This quantity will have units of Watts/Hz^2 due to the use of the nonorm state
+Trans = 0.5 * integrate(real(Poynting.Pz),1:2,Poynting.x,Poynting.y);
+# package data into dataset
+T = matrixdataset("T"); # initialize dataset
+T.addparameter("lambda",c/Poynting.f,"f",Poynting.f); # add frequency parameter
+T.addattribute("T",Trans);  # add transmission attribute
+# optionally, visualize data
+visualize(T);
