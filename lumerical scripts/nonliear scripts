@@ -18,7 +18,7 @@ visualize(T);
 # disable CW norm
 nonorm;
 # get poynting vector from monitor.  
-Poynting = getresult("monitor_2","P");
+Poynting = getresult("monitor","P");
 # integrate real Pz to get power.  Assume this monitor is 2D, in the YZ plane
 # This quantity will have units of Watts/Hz^2 due to the use of the nonorm state
 Trans = 0.5 * integrate(pinch(real(Poynting.Px)),1,pinch(Poynting.y));
