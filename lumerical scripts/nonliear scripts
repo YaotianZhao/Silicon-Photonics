@@ -12,3 +12,5 @@ T.addparameter("lambda",c/Poynting.f,"f",Poynting.f); # add frequency parameter
 T.addattribute("T",Trans);  # add transmission attribute
 # optionally, visualize data
 visualize(T);
+
+
